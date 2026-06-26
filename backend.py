@@ -84,6 +84,15 @@ def suggest():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
+@app.route('/', methods=['GET'])
+def index():
+    """Simple landing page for the backend root URL."""
+    return jsonify({
+        'status': 'ok',
+        'message': 'Flask backend is running',
+        'endpoints': ['/health', '/suggest', '/dictionary-count', '/dictionary']
+    })
+
 @app.route('/dictionary-count', methods=['GET'])
 def dictionary_count():
     """Get total word count in dictionary"""
